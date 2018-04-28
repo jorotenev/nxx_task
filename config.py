@@ -8,8 +8,7 @@ class BaseConfig(object):
 
     TESTING = False
     SECRET_KEY = os.environ['SECRET_KEY']
-    CI = False  # are we in a continuous integration environment
-    SITE_NAME = os.environ.get("SITE_NAME", "site_name.com")  #
+    SITE_NAME = os.environ.get("SITE_NAME", "site_name.com")
 
     @classmethod
     def init_app(cls, app):
@@ -24,7 +23,6 @@ class DevelopmentConfig(BaseConfig):
 
 
 class TestingConfig(DevelopmentConfig):
-    CI = os.environ.get("CI", False)
     TESTING = True
 
     @classmethod
