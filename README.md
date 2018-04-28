@@ -29,4 +29,11 @@ Mapping for the above ids comes from API #2.
   * data as returned by API #1 but with ids resolved by API #2
 * Add `[GET] /funnels/summary` - enriched funnel object
 
-## Run instructions
+
+## How to run
+$ export API_ENDPOINT_FUNNELS=<url of /dev/funnels>
+$ export API_ENDPOINT_FUNNELS_ENUMS=<url of /dev/funnels/enums>
+$ export API_AUTH_HEADER=<the auth secret>
+$ pipenv install
+$ python PlexopAPIApplication.py  # you can optionally pass a number as a port
+
