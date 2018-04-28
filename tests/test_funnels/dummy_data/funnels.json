@@ -1,0 +1,145 @@
+[
+  {
+    "funnel_id": 124438,
+    "agency_id": 4,
+    "is_published": true,
+    "extended_info": {
+      "advertiser_id": 1,
+      "funnel_is_published": true,
+      "brand_id": 39,
+      "zone_type_id": 51
+    },
+    "actions_history": [],
+    "alerts": [
+      {
+        "alert_id": 19197,
+        "alert_type_id": 3,
+        "alert_category_id": 2,
+        "severity_level_change_date": "2017-08-04T05:55:01.13163+00:00",
+        "severity_level_id": 2,
+        "is_active": true,
+        "exposure": 0,
+        "is_snoozed": true,
+        "snooze_reason_id": "1",
+        "snooze_comment": "Some comment",
+        "calculated_value": 155.74,
+        "benchmark": 0.8
+      },
+      {
+        "alert_id": 19205,
+        "alert_type_id": 4,
+        "alert_category_id": 2,
+        "severity_level_change_date": "2017-08-04T05:55:01.13163+00:00",
+        "severity_level_id": 2,
+        "is_active": true,
+        "exposure": 0,
+        "is_snoozed": false,
+        "snooze_reason_id": null,
+        "snooze_comment": null,
+        "number_of_impressions": 259665,
+        "calculated_value": 155.74,
+        "benchmark": 0.0015
+      }
+    ]
+  },
+  {
+    "funnel_id": 124460,
+    "agency_id": 4,
+    "is_published": true,
+    "extended_info": {
+      "advertiser_id": 1,
+      "funnel_is_published": true,
+      "brand_id": 39,
+      "zone_type_id": 51
+    },
+    "actions_history": [],
+    "alerts": [
+      {
+        "alert_id": 19248,
+        "alert_type_id": 3,
+        "alert_category_id": 2,
+        "severity_level_change_date": "2017-08-04T05:56:39.874516+00:00",
+        "severity_level_id": 2,
+        "is_active": true,
+        "exposure": 0,
+        "is_snoozed": true,
+        "snooze_reason_id": "1",
+        "snooze_comment": "Some another comment",
+        "calculated_value": 72.47,
+        "benchmark": 0.8
+      },
+      {
+        "alert_id": 19240,
+        "alert_type_id": 4,
+        "alert_category_id": 2,
+        "severity_level_change_date": "2017-08-04T05:56:39.874516+00:00",
+        "severity_level_id": 2,
+        "is_active": true,
+        "exposure": 0,
+        "is_snoozed": true,
+        "snooze_reason_id": "2",
+        "snooze_comment": "Test comment",
+        "number_of_impressions": 120897,
+        "calculated_value": 72.47,
+        "benchmark": 0.0015
+      }
+    ]
+  },
+  {
+    "funnel_id": 125147,
+    "agency_id": 4,
+    "is_published": true,
+    "extended_info": {
+      "advertiser_id": 1,
+      "funnel_is_published": true,
+      "brand_id": 39,
+      "zone_type_id": 51
+    },
+    "actions_history": [
+      {
+        "action_id": 9128,
+        "action_type": 2,
+        "action_type_name": "Published",
+        "new_value": null,
+        "action_date": "2017-08-09T17:04:00.845695+00:00",
+        "user_id": "08b87cb7-foo-boo",
+        "user_name": "Schmidt",
+        "funnel_id": 125147,
+        "agency_id": 4,
+        "funnel_state_id": 99796,
+        "funnel_state_log_id": 107491
+      }
+    ],
+    "alerts": [
+      {
+        "alert_id": 20639,
+        "alert_type_id": 3,
+        "alert_category_id": 2,
+        "severity_level_change_date": "2017-08-10T05:22:50.561689+00:00",
+        "severity_level_id": 2,
+        "is_active": true,
+        "exposure": 0,
+        "is_snoozed": false,
+        "snooze_reason_id": null,
+        "snooze_comment": null,
+        "calculated_value": 83.33,
+        "benchmark": 0.8
+      },
+      {
+        "alert_id": 20623,
+        "alert_type_id": 4,
+        "alert_category_id": 2,
+        "severity_level_change_date": "2017-08-10T05:22:50.561689+00:00",
+        "severity_level_id": 2,
+        "is_active": true,
+        "exposure": 0,
+        "is_snoozed": false,
+        "snooze_reason_id": null,
+        "snooze_comment": null,
+        "number_of_impressions": 138958,
+        "calculated_value": 83.33,
+        "benchmark": 0.0015
+      }
+    ]
+  }
+]

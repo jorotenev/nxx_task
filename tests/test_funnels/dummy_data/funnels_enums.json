@@ -1,0 +1,60 @@
+{
+  "severity_levels": [
+    {
+      "id": 1,
+      "name": "Critical"
+    },
+    {
+      "id": 2,
+      "name": "Warning"
+    }
+  ],
+  "alert_types": [
+    {
+      "id": 1,
+      "name": "Purple CPL"
+    },
+    {
+      "id": 2,
+      "name": "Red CPL"
+    },
+    {
+      "id": 3,
+      "name": "Drop Visit To Click"
+    },
+    {
+      "id": 4,
+      "name": "Low CTR"
+    }
+  ],
+  "zone_types": [
+    {
+      "id": 51,
+      "name": "Banner"
+    },
+    {
+      "id": 52,
+      "name": "ComplexBanner"
+    }
+  ],
+  "snooze_reasons": [
+    {
+      "id": 1,
+      "name": "Snooze Reason 1"
+    },
+    {
+      "id": 2,
+      "name": "Another Snooze reason"
+    }
+  ],
+  "alert_categories": [
+    {
+      "id": 1,
+      "name": "Technical"
+    },
+    {
+      "id": 2,
+      "name": "Business"
+    }
+  ]
+}
