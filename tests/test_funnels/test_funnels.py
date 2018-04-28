@@ -1,38 +1,36 @@
 import json
 
+from app.api.resolve_ids import get_name_from_enums
 from tests.base_test import BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin
 from tests.test_funnels.dummy_data import dummy_funnels_enums, dummy_funnels
-from app.api.views import get_name_from_enums
 
 
 class TestFunnels(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
     def setUp(self):
         self.endpoint = "api.funnels"
-        self.dummy_funnels = [dict(funnel) for funnel in dummy_funnels]
-        self.dummy_funnels_enums = dict(dummy_funnels_enums)
 
-        self.patched_get_funnels = self.patch("app.api.views.get_funnels")
-        self.patched_get_funnels.return_value = self.dummy_funnels
-        self.patched_get_funnels_enums = self.patch("app.api.views.get_funnels_enums")
-        self.patched_get_funnels_enums.return_value = self.dummy_funnels_enums
+        self.patched_get_funnels = self.patch("app.api.resolve_ids.get_funnels")
+        self.patched_get_funnels.return_value = dummy_funnels
+        self.patched_get_funnels_enums = self.patch("app.api.resolve_ids.get_funnels_enums")
+        self.patched_get_funnels_enums.return_value = dummy_funnels_enums
 
         self.response_json = json.loads(self.get(url=self.endpoint))
 
     def test_smoke(self):
         response_raw = self.get("api.funnels", raw_response=True)
+
         self.assertTrue(len(self.response_json), "Response shouldn't be empty")
-
         self.assertEqual(200, response_raw.status_code)
-
 
     def test_funnel_object_resolved_ids(self):
         """
         Test that the `_id` attributes of a funnel were resolved with `_name` attrs
-        using the correct value from the enum
+        using the correct "name" from the enum
         """
 
         result_json = self.response_json
         self.assertTrue(len(result_json))
+
         mappings = {
             'alert_type_id': {"namespace": "alert_types", "name_key": "alert_type_name"},
             'alert_category_id': {"namespace": "alert_categories", "name_key": "alert_category_name"},
@@ -40,14 +38,14 @@ class TestFunnels(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
             'snooze_reason_id': {"namespace": "snooze_reasons", "name_key": "snooze_reason_name"}
         }
         for funnel in result_json:
-            source_funnel = [f for f in self.dummy_funnels if f['funnel_id'] == funnel['funnel_id']][0]
+            source_funnel = [f for f in dummy_funnels if f['funnel_id'] == funnel['funnel_id']][0]
 
             for alert in funnel['alerts']:
                 source_alert = [a for a in source_funnel['alerts'] if a['alert_id'] == alert['alert_id']][0]
 
                 for key, key_info in mappings.items():
                     value_for_name_attr = alert[key_info['name_key']]
-                    expected_name_val = get_name_from_enums(self.dummy_funnels_enums, key_info['namespace'],
+                    expected_name_val = get_name_from_enums(dummy_funnels_enums, key_info['namespace'],
                                                             source_alert[key])
                     self.assertEqual(expected_name_val,
                                      value_for_name_attr)
@@ -61,7 +59,7 @@ class TestFunnels(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
         """
         "If some id is null, the name will also be null"
         """
-        copy_dumy_funnels = [dict(self.dummy_funnels[1])]
+        copy_dumy_funnels = [dict(dummy_funnels[1])]
         copy_dumy_funnels[0]['alerts'][0]['alert_type_id'] = None
         self.patched_get_funnels.return_value = copy_dumy_funnels
 
@@ -73,12 +71,10 @@ class TestFunnels(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
 class TestFunnelsSummary(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
     def setUp(self):
         self.endpoint = "api.funnels_summary"
-        self.dummy_funnels = [dict(funnel) for funnel in dummy_funnels]
-        self.dummy_funnels_enums = dict(dummy_funnels_enums)
 
-        self.patched_get_funnels = self.patch("app.api.views.get_funnels")
-        self.patched_get_funnels.return_value = self.dummy_funnels
-        self.patched_get_funnels_enums = self.patch("app.api.views.get_funnels_enums")
+        self.patched_get_funnels = self.patch("app.api.resolve_ids.get_funnels")
+        self.patched_get_funnels.return_value = dummy_funnels
+        self.patched_get_funnels_enums = self.patch("app.api.resolve_ids.get_funnels_enums")
         self.patched_get_funnels_enums.return_value = dummy_funnels_enums
 
         self.response_json = json.loads(self.get(url=self.endpoint, raw_response=False))
@@ -99,6 +95,7 @@ class TestFunnelsSummary(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
         expected_removed_fields = [
             "alerts", "actions_history"
         ]
+
         for funnel in response_json:
             self.assertTrue(all([(enriched_field in funnel) for enriched_field in expected_summary_enriched_fields]))
             self.assertTrue(
@@ -128,7 +125,7 @@ class TestFunnelsSummary(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
     def test_enriched_attrs_values(self):
         response_json = self.response_json
         for funnel in response_json:
-            source_funnel = [f for f in self.dummy_funnels if f['id'] == funnel['id']][0]
+            source_funnel = [f for f in dummy_funnels if f['funnel_id'] == funnel['funnel_id']][0]
             expected_number_of_alerts = len(source_funnel['alerts'])
             self.assertEqual(expected_number_of_alerts, funnel['number_of_alerts'])
             expected_number_of_snoozed_alerts = len([alert for alert in source_funnel['alerts'] if alert['is_snoozed']])
@@ -137,5 +134,5 @@ class TestFunnelsSummary(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
             expected_exposure_sum = sum([alert['exposure'] for alert in source_funnel['alerts']])
             self.assertEqual(expected_exposure_sum, funnel['exposure_sum'])
 
-            expected_max_exposure_id = max(funnel['alerts'], key=lambda a: a['exposure'])['alert_id']
+            expected_max_exposure_id = max(source_funnel['alerts'], key=lambda a: a['exposure'])['alert_id']
             self.assertEqual(expected_max_exposure_id, funnel['max_exposure_alert_id'])

@@ -18,4 +18,5 @@ def get_funnels_enums():
 def make_request(url):
     auth_header_key = "x-api-key"
     auth_header_value = current_app.config['API_AUTH_HEADER']
-    return get(url, {auth_header_key: auth_header_value}).json()
+    
+    return get(url, headers={auth_header_key: auth_header_value}).json()

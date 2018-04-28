@@ -1,1 +1,1 @@
-Holds 
+This facade is responsible for making the calls to the third-party API which returns the raw "funnels" data.

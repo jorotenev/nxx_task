@@ -28,9 +28,11 @@ def _base_app(config_name):
     :arg config_name [string] - the name of the environment; must be a key in the "config" dict
     """
     from config import configs
+
     app = Flask(__name__)
     app.config.from_object(configs[config_name])
     configs[config_name].init_app(app)
+
     return app
 
 
