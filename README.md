@@ -8,7 +8,9 @@
 * `$ python PlexopAPIApplication.py # you can optionally pass a port number as a third param`
 
 ## Test
-$ pipenv --python=3.6 && pipenv install && pipenv shell
-$ python -m unittest discover --start-directory=tests/ --top-level-directory=.
+`$ pipenv --python=3.6 && pipenv install && pipenv shell`
+`$ export FLASK_APP=manage`
+`$ export DOT_ENV_FILE=.env_test`
+`$ flask test`
 
 or alternatively via Pycharm - select `tests/` as _Path_ when adding a new _Python test_ run configuration.
