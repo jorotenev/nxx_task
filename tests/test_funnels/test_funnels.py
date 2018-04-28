@@ -1,6 +1,6 @@
 import json
 
-from app.api.resolve_ids import get_name_from_enums
+from app.funnels.resolve_ids import get_name_from_enums
 from tests.base_test import BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin
 from tests.test_funnels.dummy_data import dummy_funnels_enums, dummy_funnels
 
@@ -9,9 +9,9 @@ class TestFunnels(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
     def setUp(self):
         self.endpoint = "api.funnels"
 
-        self.patched_get_funnels = self.patch("app.api.resolve_ids.get_funnels")
+        self.patched_get_funnels = self.patch("app.funnels.resolve_ids.get_funnels")
         self.patched_get_funnels.return_value = dummy_funnels
-        self.patched_get_funnels_enums = self.patch("app.api.resolve_ids.get_funnels_enums")
+        self.patched_get_funnels_enums = self.patch("app.funnels.resolve_ids.get_funnels_enums")
         self.patched_get_funnels_enums.return_value = dummy_funnels_enums
 
         self.response_json = json.loads(self.get(url=self.endpoint))
@@ -72,9 +72,9 @@ class TestFunnelsSummary(BaseTest, BaseTestWithHTTPMethodsMixin, PatchMixin):
     def setUp(self):
         self.endpoint = "api.funnels_summary"
 
-        self.patched_get_funnels = self.patch("app.api.resolve_ids.get_funnels")
+        self.patched_get_funnels = self.patch("app.funnels.resolve_ids.get_funnels")
         self.patched_get_funnels.return_value = dummy_funnels
-        self.patched_get_funnels_enums = self.patch("app.api.resolve_ids.get_funnels_enums")
+        self.patched_get_funnels_enums = self.patch("app.funnels.resolve_ids.get_funnels_enums")
         self.patched_get_funnels_enums.return_value = dummy_funnels_enums
 
         self.response_json = json.loads(self.get(url=self.endpoint, raw_response=False))

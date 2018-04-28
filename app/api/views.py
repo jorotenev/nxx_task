@@ -1,9 +1,7 @@
-from app.api.funnel_summary import prepare_funnels_summary
-from app.api.resolve_ids import get_funnels_and_resolve_ids
-from app.helpers.time import measure_time_decorator
 from . import api
+from app.funnels import prepare_funnels_summary, get_funnels_and_resolve_ids
+from app.helpers.time import measure_time_decorator
 from app.helpers.api_utils import make_json_response
-
 
 
 @api.route('/funnels')
