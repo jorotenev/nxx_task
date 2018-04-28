@@ -2,6 +2,10 @@ import os
 
 
 class BaseConfig(object):
+    API_ENDPOINT_FUNNELS = os.environ['API_ENDPOINT_FUNNELS']
+    API_ENDPOINT_FUNNELS_ENUMS = os.environ['API_ENDPOINT_FUNNELS_ENUMS']
+    API_AUTH_HEADER = os.environ['API_AUTH_HEADER']
+
     TESTING = False
     SECRET_KEY = os.environ['SECRET_KEY']
     CI = False  # are we in a continuous integration environment

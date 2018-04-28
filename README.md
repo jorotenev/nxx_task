@@ -8,8 +8,8 @@
 ```
 [
     {
-        "funnel_id":"<some funnel id>",
-        "agency_id":"<some agency id>",
+        "funnel_id":<some funnel id>,
+        "agency_id":<some agency id>,
         "is_published": <true|false>,
         "extended_info": {"nested":"attrs"},
         "alerts": [
